@@ -1,4 +1,4 @@
-flask_hello_world/
+Speech_recognition_app/
 │
 ├── app/
 │   ├── __init__.py
