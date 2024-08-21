@@ -26,6 +26,10 @@ def index():
     print("Index page accessed")
     return render_template('index.html')
 
+@application.route('/functionality')
+def functionality():
+    return render_template('functionality.html')
+
 @application.route('/upload_audio', methods=['POST'])
 def upload_audio():
     if 'audio_data' not in request.files:
@@ -94,13 +98,15 @@ def analyze_sentiment():
     
     # Load the sentiment-analysis pipeline
     classifier = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment")
-    
+    sentimentana = pipeline("text-classification", model="bhadresh-savani/distilbert-base-uncased-emotion")
     with open(transcript_path, 'r') as file:
         sentence = file.read()
     
+    prompted_sentence = f"The emotion expressed in the following text: '{sentence}' is"
+
     # Perform sentiment analysis
     result = classifier(sentence)
-    
+    result2=sentimentana(prompted_sentence)
     # Mapping from model output labels to sentiment categories
     label_mapping = {
         'LABEL_0': 'Negative',
@@ -111,8 +117,74 @@ def analyze_sentiment():
     # Extract the label and score from the output
     predicted_label = result[0]['label']
     predicted_score = result[0]['score']
-    
+    category = result2[0]['label']
     # Map the label to its corresponding sentiment
     sentiment = label_mapping.get(predicted_label, "Unknown label")
+    print("Result from sentimentana:", category)
+
     # Return the sentiment result as a JSON response
-    return jsonify({"sentiment": sentiment, "score": predicted_score}), 200
+    return jsonify({
+        "sentiment": sentiment, 
+        "score": predicted_score, 
+        "feeling": category
+    }), 200
+
+@application.route('/translate_to_hindi', methods=['POST'])
+def translate_to_hindi():
+    transcript_path = os.path.join(application.config['UPLOAD_FOLDER'], 'transcribed_script.txt')
+    
+    if not os.path.exists(transcript_path):
+        return jsonify({"error": "No transcribed text found. Please transcribe audio first."}), 400
+    
+    translator = pipeline("translation_en_to_hi", model="Helsinki-NLP/opus-mt-en-hi")
+    with open(transcript_path, 'r') as file:
+        sentence = file.read()
+    result=translator(sentence)
+    trans=result[0]['translation_text']
+    print(trans)
+    return jsonify({
+        "translation": trans
+    }), 200
+
+
+@application.route('/translate_to_spanish', methods=['POST'])
+def translate_to_spanish():
+    transcript_path = os.path.join(application.config['UPLOAD_FOLDER'], 'transcribed_script.txt')
+    
+    if not os.path.exists(transcript_path):
+        return jsonify({"error": "No transcribed text found. Please transcribe audio first."}), 400
+    
+    # Use a public model for translation from English to Spanish
+    translator = pipeline("translation_en_to_es", model="Helsinki-NLP/opus-mt-en-es")
+    
+    with open(transcript_path, 'r') as file:
+        sentence = file.read()
+    
+    result = translator(sentence)
+    trans = result[0]['translation_text']
+    
+    print(trans)
+    return jsonify({
+        "translation": trans
+    }), 200
+
+@application.route('/translate_to_french', methods=['POST'])
+def translate_to_french():
+    transcript_path = os.path.join(application.config['UPLOAD_FOLDER'], 'transcribed_script.txt')
+    
+    if not os.path.exists(transcript_path):
+        return jsonify({"error": "No transcribed text found. Please transcribe audio first."}), 400
+    
+    # Use a public model for translation from English to French
+    translator = pipeline("translation_en_to_fr", model="Helsinki-NLP/opus-mt-en-fr")
+    
+    with open(transcript_path, 'r') as file:
+        sentence = file.read()
+    
+    result = translator(sentence)
+    trans = result[0]['translation_text']
+    
+    print(trans)
+    return jsonify({
+        "translation": trans
+    }), 200

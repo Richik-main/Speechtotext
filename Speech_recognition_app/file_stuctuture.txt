@@ -1,10 +1,11 @@
-Speech_recognition_app/
+flask_hello_world/
 │
 ├── app/
 │   ├── __init__.py
 │   ├── routes.py
 │   ├── templates/
 │   │   └── index.html
+|   |   |__ functionality.html
 │   └── static/
 │       ├── css/
 │       │   └── style.css

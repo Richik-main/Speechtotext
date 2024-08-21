@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-chart-line"></i> Sentiment Analysis App</h1>
+ <!-- Go Back Button -->
+    <a href="{{ url_for('index') }}" class="btn go-back-btn"><i class="fas fa-arrow-left"></i> Go Back</a>
+        <!-- Recording Controls -->
+        <div class="button-group">
+            <button id="recordButton" class="btn"><i class="fas fa-microphone"></i> Start Recording</button>
+            <button id="stopButton" class="btn" disabled><i class="fas fa-stop"></i> Stop Recording</button>
+        </div>
+
+        <!-- Audio Preview -->
+        <h3><i class="fas fa-play-circle"></i> Preview</h3>
+        <audio id="audioPreview" controls></audio>
+
+        <!-- Form to Submit Recorded Audio -->
+        <form id="uploadForm" method="POST" enctype="multipart/form-data" action="{{ url_for('upload_audio') }}">
+            <input type="hidden" name="audio_data" id="audioData">
+            <button type="submit" class="btn" disabled id="submitButton"><i class="fas fa-upload"></i> Upload Recording</button>
+            <div id="uploadNotification" class="notification"></div>
+        </form>
+
+        <!-- Transcription Controls -->
+        <button id="transcribeButton" class="btn" disabled><i class="fas fa-file-alt"></i> Transcribe Audio</button>
+
+        <h3><i class="fas fa-file-alt"></i> Transcription Result</h3>
+        <div id="transcriptionResult" class="result-box"></div>
+
+        <!-- Sentiment Analysis Controls -->
+        <button id="analyzeButton" class="btn" disabled><i class="fas fa-chart-bar"></i> Analyze Sentiment</button>
+
+        <h3><i class="fas fa-smile"></i> Sentiment Analysis Result</h3>
+        <div id="sentimentResult" class="result-box"></div>
+
+        <!-- Translation Controls -->
+        <div class="translation-controls">
+            <label for="languageSelect" class="label"><i class="fas fa-language"></i> Select Language for Translation:</label>
+            <select id="languageSelect" class="form-control">
+                <option value="" disabled selected>Select Language</option>
+                <option value="spanish">Spanish</option>
+                <option value="french">French</option>
+                <option value="hindi">Hindi</option>
+            </select>
+            <button id="translateButton" class="btn" disabled><i class="fas fa-globe"></i> Translate Sentence</button>
+        </div>
+
+        <h3><i class="fas fa-language"></i> Translation Result</h3>
+        <div id="translateResult" class="result-box"></div>
+    </div>
+    <!-- Reset Button -->
+    <button id="resetButton" class="btn"><i class="fas fa-redo-alt"></i> Reset</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/recorderjs/0.1.0/recorder.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

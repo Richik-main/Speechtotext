@@ -3,44 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sentiment Analysis App</title>
+    <title>Welcome | Voice Recorder</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Sentiment Analysis App</h1>
-
-        <!-- Button to start recording -->
-        <div class="button-group">
-            <button id="recordButton">Start Recording</button>
-            <button id="stopButton" disabled>Stop Recording</button>
-        </div>
-
-        <!-- Audio preview -->
-        <h3>Preview</h3>
-        <audio id="audioPreview" controls></audio>
-
-        <!-- Form to submit the recorded audio -->
-        <form id="uploadForm" method="POST" enctype="multipart/form-data" action="{{ url_for('upload_audio') }}">
-            <input type="hidden" name="audio_data" id="audioData">
-            <button type="submit" disabled id="submitButton">Upload Recording</button>
-            <div id="uploadNotification" class="notification"></div>
-        </form>
-
-        <!-- Button to transcribe the audio -->
-        <button id="transcribeButton" disabled>Transcribe Audio</button>
-
-        <h3>Transcription Result</h3>
-        <div id="transcriptionResult" class="result-box"></div>
-
-        <!-- Button to analyze sentiment -->
-        <button id="analyzeButton" disabled>Analyze Sentiment</button>
-
-        <h3>Sentiment Analysis Result</h3>
-        <div id="sentimentResult" class="result-box"></div>
+    <div class="home-container">
+        <h1>Welcome to the Voice Recorder App</h1>
+        <p>This is a website to play with your own voice recordings. You can record your voice, transcribe it, analyze the sentiment, and even translate it into different languages.</p>
+        <a href="{{ url_for('functionality') }}" class="btn start-btn">Get Started</a>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/recorderjs/0.1.0/recorder.js"></script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
