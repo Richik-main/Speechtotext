@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome | Voice Recorder</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
 </head>
 <body>
     <div class="home-container">
@@ -13,12 +13,9 @@
         <a href="{{ url_for('functionality') }}" class="btn start-btn">Get Started</a>
     </div>
     <div class="new-container">
-        <div class="new-container">
-            <h2>Work with an Image</h2>
-            <p>You can also upload an image to classify it using our AI models.</p>
-            <a href="{{ url_for('functionality_image') }}" class="btn start-btn">Upload Image</a>
-        </div>
-
+        <h2>Work with an Image</h2>
+        <p>You can also upload an image to classify it using our AI models.</p>
+        <a href="{{ url_for('functionality_image') }}" class="btn start-btn">Upload Image</a>
     </div>
 </body>
 </html>
