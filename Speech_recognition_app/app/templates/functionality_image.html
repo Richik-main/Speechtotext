@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <form id="uploadForm" action="/functionality_image" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" id="imageUpload" accept="image/*" />
+            <button type="submit">Upload</button>
+        </form>
+
+        {% if message %}
+            <p class="success-message">{{ message }}</p>
+        {% endif %}
+
+        {% if filename %}
+            <div class="image-container">
+                <img id="imageDisplay" src="{{ url_for('uploaded_file', filename=filename) }}" alt="Uploaded Image" />
+            </div>
+
+            <form id="classifyForm" action="/functionality_image" method="post">
+                <input type="hidden" name="filename" value="{{ filename }}">
+                <button type="submit" name="classify">Classify Image</button>
+            </form>
+        {% endif %}
+
+        {% if classification_result %}
+            <p class="classification-result">{{ classification_result }}</p>
+        {% endif %}
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

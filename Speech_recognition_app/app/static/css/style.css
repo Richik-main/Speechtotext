@@ -211,3 +211,25 @@ audio {
 .go-back-btn {
     margin-bottom: 20px; /* Add some margin to separate it from the top */
 }
+
+#uploadForm, #classifyForm {
+    margin-bottom: 20px;
+}
+
+.success-message, .classification-result {
+    color: green;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.image-container {
+    margin-top: 20px;
+}
+
+#imageDisplay {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #ddd;
+    padding: 10px;
+    background-color: #fff;
+}

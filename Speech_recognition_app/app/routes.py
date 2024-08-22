@@ -1,11 +1,10 @@
-from flask import render_template, request,app, jsonify
+from flask import render_template, request, app, jsonify, send_from_directory, redirect, url_for
 from app import application
 import os
 import speech_recognition as sr
 from transformers import pipeline
-
-
-
+from PIL import Image
+from transformers import CLIPProcessor, CLIPModel
 # Initialize recognizer class (for recognizing the speech)
 recognizer = sr.Recognizer()
 
@@ -29,6 +28,10 @@ def index():
 @application.route('/functionality')
 def functionality():
     return render_template('functionality.html')
+
+@application.route('/functionality_image')
+def functionality_image():
+    return render_template('functionality_image.html')
 
 @application.route('/upload_audio', methods=['POST'])
 def upload_audio():
@@ -188,3 +191,56 @@ def translate_to_french():
     return jsonify({
         "translation": trans
     }), 200
+
+## Work with the image
+###########################
+
+
+# Load the CLIP model and processor once at the start
+model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
+processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+
+@application.route('/functionality_image', methods=['GET', 'POST'])
+def functionality_image_upload():
+    if request.method == 'POST':
+        if 'image' in request.files:
+            file = request.files['image']
+            if file.filename != '':
+                # Save the file to the upload folder
+                file_path = os.path.join(application.config['UPLOAD_FOLDER'], file.filename)
+                file.save(file_path)
+                return render_template('functionality_image.html', filename=file.filename, message="Image uploaded successfully!")
+        
+        if 'classify' in request.form:
+            filename = request.form.get('filename')
+            if filename:
+                file_path = os.path.join(application.config['UPLOAD_FOLDER'], filename)
+                # Perform image classification
+                classification_result = classify_image(file_path)
+                return render_template('functionality_image.html', filename=filename, classification_result=classification_result)
+    
+    return render_template('functionality_image.html')
+
+@application.route('/uploads/<filename>')
+def uploaded_file(filename):
+    # Serve the file from the UPLOAD_FOLDER
+    return send_from_directory(application.config['UPLOAD_FOLDER'], filename)
+
+def classify_image(image_path):
+    # Load and process the image
+    image = Image.open(image_path)
+
+    # Define candidate labels
+    labels = ["a cat", "a dog", "a car", "a tree", "a yeti","a cow"]
+
+    # Encode the image and some candidate texts
+    inputs = processor(text=labels, images=image, return_tensors="pt", padding=True)
+    outputs = model(**inputs)
+
+    # Get the logits (higher is better) for each text
+    logits_per_image = outputs.logits_per_image
+    best_match_index = logits_per_image.argmax()  # Get the index of the highest score
+    predicted_label = labels[best_match_index]  # Find the corresponding label
+
+    # Return the classification result
+    return f"The image is classified as: {predicted_label}"
