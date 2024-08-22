@@ -3,7 +3,7 @@ import os
 
 application = Flask(__name__)
 
-application.config['UPLOAD_FOLDER'] = '/Users/richikghosh/Documents/GitHub/Audio to speech/uploads'
+application.config['UPLOAD_FOLDER'] = '/Users/richikghosh/Documents/GitHub/Speechtotext/uploads'
 import os
 os.makedirs(application.config['UPLOAD_FOLDER'], exist_ok=True)
 # Set the upload folder configuration

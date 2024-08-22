@@ -184,8 +184,7 @@ audio {
     margin-bottom: 20px;
 }
 
-/* style.css */
-
+/* General Button Styles */
 .btn {
     background: linear-gradient(135deg, #00c3ff, #0044ff);
     color: white;
@@ -207,7 +206,81 @@ audio {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Specific style for the Go Back button */
+/* Specific Style for the Go Back Button */
 .go-back-btn {
     margin-bottom: 20px; /* Add some margin to separate it from the top */
+}
+
+#uploadForm, #classifyForm {
+    margin-bottom: 20px;
+}
+
+.success-message, .classification-result {
+    color: green;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.image-container {
+    margin-top: 20px;
+}
+
+#imageDisplay {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #ddd;
+    padding: 10px;
+    background-color: #fff;
+}
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1em;
+    color: #fff;
+    background: linear-gradient(135deg, #00c3ff, #0044ff);
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn i {
+    margin-right: 8px;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #009cff, #0024ff);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    transform: translateY(-3px);
+}
+
+/* Custom file upload button */
+.custom-file-upload {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1em;
+    color: #fff;
+    background: linear-gradient(135deg, #00c3ff, #0044ff);
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.custom-file-upload i {
+    margin-right: 8px;
+}
+
+.custom-file-upload:hover {
+    background: linear-gradient(135deg, #009cff, #0024ff);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    transform: translateY(-3px);
+}
+
+/* Hide the actual file input element */
+input[type="file"] {
+    display: none;
 }

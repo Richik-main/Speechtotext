@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <form id="uploadForm" action="/functionality_image" method="post" enctype="multipart/form-data">
+            <label for="imageUpload" class="custom-file-upload">
+                <i class="fas fa-image"></i> Choose Image
+            </label>
+            <input type="file" name="image" id="imageUpload" accept="image/*" />
+            <button type="submit" class="btn"><i class="fas fa-upload"></i> Upload</button>
+        </form>
+
+        <!-- Go Back Button -->
+        <a href="{{ url_for('index') }}" class="btn go-back-btn"><i class="fas fa-arrow-left"></i> Go Back</a>
+
+        {% if message %}
+            <p class="success-message">{{ message }}</p>
+        {% endif %}
+
+        {% if filename %}
+            <div class="image-container">
+                <img id="imageDisplay" src="{{ url_for('uploaded_file', filename=filename) }}" alt="Uploaded Image" />
+            </div>
+
+            <form id="classifyForm" action="/functionality_image" method="post">
+                <input type="hidden" name="filename" value="{{ filename }}">
+                <button type="submit" name="classify" class="btn"><i class="fas fa-brain"></i> Classify Image</button>
+            </form>
+        {% endif %}
+
+        {% if classification_result %}
+            <p class="classification-result">{{ classification_result }}</p>
+        {% endif %}
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

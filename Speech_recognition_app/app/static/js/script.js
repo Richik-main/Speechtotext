@@ -13,7 +13,7 @@ const transcriptionResult = document.getElementById("transcriptionResult");
 const sentimentResult = document.getElementById("sentimentResult");
 const translateResult = document.getElementById("translateResult");
 
-let recorder, audioContext, gumStream;
+let recorder, audioContext, gumStream, uploadedImageFilename = '';
 
 // Helper function to update the UI
 function updateUI(element, message, color = "black") {
@@ -192,4 +192,19 @@ document.getElementById('resetButton').addEventListener('click', function() {
     document.getElementById('translateButton').disabled = true;
 
     // Optionally reset any other states
+});
+document.getElementById('imageUpload').addEventListener('change', function(event) {
+    const imageDisplay = document.getElementById('imageDisplay');
+    const file = event.target.files[0];
+    
+    if (file) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            imageDisplay.src = e.target.result;
+            imageDisplay.style.display = 'block';
+        }
+        
+        reader.readAsDataURL(file);
+    }
 });
