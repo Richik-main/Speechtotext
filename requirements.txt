@@ -5,3 +5,4 @@ Pillow
 SpeechRecognition
 gunicorn
 wave
+speech_recognition
