@@ -2,6 +2,8 @@
 This is simple speech to text and then text analysis project
 
 <img width="857" alt="image" src="https://github.com/user-attachments/assets/23a94fb2-873d-46cd-955d-16425687db4f">
+
+
 # Speech Transcription, Sentiment Analysis, Multilingual Translation, and Image Classification in Flask: An Integrated Application
 
 ## Abstract
