@@ -103,4 +103,3 @@ In future versions, we aim to:
 3. Helsinki-NLP. (2021). Machine Translation Models. Available at: [https://huggingface.co/Helsinki-NLP](https://huggingface.co/Helsinki-NLP)
 4. OpenAI. (2021). CLIP Model. Available at: [https://github.com/openai/CLIP](https://github.com/openai/CLIP)
 
-Last updated on 2024-10-02
