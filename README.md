@@ -57,6 +57,7 @@ The multilingual translation module translates the transcribed text into three t
 
 ### 3.4 Image Classification
 The image classification module allows users to upload images, which are then classified using OpenAI's CLIP model. The CLIP model can analyze the uploaded image and predict the best-matching label from a predefined set of categories. The CLIP model processes both image and text inputs and determines the closest match between them.
+<img width="645" alt="image" src="https://github.com/user-attachments/assets/bff747d1-fbbb-4b53-b578-eed31c01e421" />
 
 ---
 
