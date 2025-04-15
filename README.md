@@ -3,10 +3,8 @@
 
 
 
-**Workflow image not completely modified**
+<img width="851" alt="image" src="https://github.com/user-attachments/assets/df44511f-cdd1-47ed-8935-57b073fb09b0" />
 
-
-### Modified the worflow
 
 # Speech Transcription, Sentiment Analysis, Multilingual Translation, and Image Classification in Flask: An Integrated Application
 
