@@ -1,6 +1,6 @@
 
 ## Basic workflow
-<img width="857" alt="image" src="https://github.com/user-attachments/assets/23a94fb2-873d-46cd-955d-16425687db4f">
+
 
 
 **Workflow image not completely modified**
@@ -46,6 +46,10 @@ Each of these components operates independently but is seamlessly integrated int
 
 ## 3. Modules and Functionality
 
+### Landing Page
+<img width="965" alt="image" src="https://github.com/user-attachments/assets/c1930ef7-ae02-4c08-ac85-e11c25ed0217" />
+
+
 ### 3.1 Speech Transcription
 The transcription module uses Python’s `speech_recognition` library to process audio files in WAV format. The function listens to the audio file and uses Google's Speech API to transcribe it. The transcription is saved into a text file for further use. Error handling mechanisms ensure proper user feedback in case of unrecognized speech or network errors.
 
@@ -55,8 +59,11 @@ Once the transcription is complete, the sentiment analysis module can be invoked
 ### 3.3 Multilingual Translation
 The multilingual translation module translates the transcribed text into three target languages: Hindi, Spanish, and French. The system uses Helsinki-NLP’s translation models, which are fine-tuned for high accuracy on specific language pairs.
 
+<img width="676" alt="image" src="https://github.com/user-attachments/assets/be72e993-863b-44c2-8750-dea8ebdfcc5e" />
+
 ### 3.4 Image Classification
 The image classification module allows users to upload images, which are then classified using OpenAI's CLIP model. The CLIP model can analyze the uploaded image and predict the best-matching label from a predefined set of categories. The CLIP model processes both image and text inputs and determines the closest match between them.
+
 <img width="645" alt="image" src="https://github.com/user-attachments/assets/bff747d1-fbbb-4b53-b578-eed31c01e421" />
 
 ---
