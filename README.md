@@ -1,11 +1,4 @@
 
-## Basic workflow
-
-
-
-<img width="851" alt="image" src="https://github.com/user-attachments/assets/df44511f-cdd1-47ed-8935-57b073fb09b0" />
-
-
 # Speech Transcription, Sentiment Analysis, Multilingual Translation, and Image Classification in Flask: An Integrated Application
 
 ## Abstract
@@ -13,6 +6,13 @@ In this project, we present a Flask-based web application that integrates multip
 
 ### Keywords:
 Speech Transcription, Sentiment Analysis, Multilingual Translation, Image Classification, Flask, Natural Language Processing, Computer Vision, Hugging Face, CLIP Model.
+
+## Basic workflow
+
+
+
+<img width="851" alt="image" src="https://github.com/user-attachments/assets/df44511f-cdd1-47ed-8935-57b073fb09b0" />
+
 
 ---
 
